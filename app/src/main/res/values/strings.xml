@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ReportCrime</string>
+    <string name="action_settings">Settings</string>
+    <string name="report_crime">Report A Crime</string>
+    <string name="view_crime">View Crimes Near Me</string>
+    <string name="title_activity_report_maps">Map</string>
+    <string name="submit_report">Report!</string>
+    <string name="crime_type">Insert Infraction Here</string>
+</resources>
