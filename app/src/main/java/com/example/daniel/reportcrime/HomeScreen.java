@@ -9,9 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.parse.Parse;
-import com.parse.ParseObject;
-
 
 public class HomeScreen extends AppCompatActivity {
 
@@ -24,11 +21,6 @@ public class HomeScreen extends AppCompatActivity {
         setContentView(R.layout.activity_home_screen);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        //Setup Parse to be used
-
-        Parse.enableLocalDatastore(this);
-        Parse.initialize(this, "SBky4g5A1hxY50onQHo2pqkyJN6EGMcXClwRKi98", "TgNEGGF8VnwAUt9qA6OI5XFTJQHKGvfL9EMYPRVS");
 
 
         /**Floating Button Setup by default. Might use for something later
@@ -50,11 +42,11 @@ public class HomeScreen extends AppCompatActivity {
         setupViewCrimesButtonListener();
 
         //Test Parse SDK
-
+        /**
         ParseObject testObject = new ParseObject("TestObject");
         testObject.put("foo", "bar");
         testObject.saveInBackground();
-
+        */
     }
 
     private void setupViewCrimesButtonListener() {

@@ -7,17 +7,13 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.location.Location;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -33,6 +29,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.parse.Parse;
+import com.parse.ParseObject;
 
 
 public class ReportMapsActivity extends AppCompatActivity implements
@@ -61,6 +59,11 @@ public class ReportMapsActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Setup Parse SDK
+       // Parse.enableLocalDatastore(this);
+        Parse.initialize(this, "SBky4g5A1hxY50onQHo2pqkyJN6EGMcXClwRKi98", "TgNEGGF8VnwAUt9qA6OI5XFTJQHKGvfL9EMYPRVS");
+
+
         setContentView(R.layout.activity_report_maps);
 
         mapFragment = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map));
@@ -87,10 +90,20 @@ public class ReportMapsActivity extends AppCompatActivity implements
             @Override
             public void onClick(View v) {
                 if(mCrimeMarker != null){
+
                     String mInfraction = mCrimeText.getText().toString();
-                    Crime mCrime = new Crime(mCrimeMarker, mInfraction);
-                    Toast.makeText(getApplicationContext(), (String)mCrime.toString() + " Reported",
-                            Toast.LENGTH_LONG).show();
+                    String lat = Double.toString(mCrimeMarker.getPosition().latitude);
+                    String longitude = Double.toString(mCrimeMarker.getPosition().longitude);
+
+                    //Uploads a parse object for the crime
+                    ParseObject crime = new ParseObject("Crime");
+                    crime.put("lat", lat);
+                    crime.put("long", longitude);
+                    crime.put("infraction", mInfraction);
+                    crime.saveInBackground();
+
+                    Toast.makeText(getApplicationContext(), "Reported.", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), (String)mCrime.toString() + " Reported",Toast.LENGTH_LONG).show();
                 }
                 else{
                     Toast.makeText(getApplicationContext(),
