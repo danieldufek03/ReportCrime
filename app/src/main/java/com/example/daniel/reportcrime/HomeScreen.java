@@ -41,20 +41,14 @@ public class HomeScreen extends AppCompatActivity {
         viewCrimesButton = (Button)findViewById(R.id.view_crime_button);
         setupViewCrimesButtonListener();
 
-        //Test Parse SDK
-        /**
-        ParseObject testObject = new ParseObject("TestObject");
-        testObject.put("foo", "bar");
-        testObject.saveInBackground();
-        */
     }
 
     private void setupViewCrimesButtonListener() {
         viewCrimesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO
-                //do something
+                Intent i = new Intent(HomeScreen.this, ViewCrimesMapsActivity.class);
+                startActivity(i);
             }
         });
     }
