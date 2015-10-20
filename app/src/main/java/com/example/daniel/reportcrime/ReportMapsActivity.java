@@ -29,7 +29,6 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.parse.Parse;
 import com.parse.ParseObject;
 
 
@@ -61,7 +60,7 @@ public class ReportMapsActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         //Setup Parse SDK
        // Parse.enableLocalDatastore(this);
-        Parse.initialize(this, "SBky4g5A1hxY50onQHo2pqkyJN6EGMcXClwRKi98", "TgNEGGF8VnwAUt9qA6OI5XFTJQHKGvfL9EMYPRVS");
+        //Parse.initialize(this, "SBky4g5A1hxY50onQHo2pqkyJN6EGMcXClwRKi98", "TgNEGGF8VnwAUt9qA6OI5XFTJQHKGvfL9EMYPRVS");
 
 
         setContentView(R.layout.activity_report_maps);
@@ -94,7 +93,7 @@ public class ReportMapsActivity extends AppCompatActivity implements
                     String mInfraction = mCrimeText.getText().toString();
                     String lat = Double.toString(mCrimeMarker.getPosition().latitude);
                     String longitude = Double.toString(mCrimeMarker.getPosition().longitude);
-
+                    mCrimeMarker.setTitle(mInfraction);
                     //Uploads a parse object for the crime
                     ParseObject crime = new ParseObject("Crime");
                     crime.put("lat", lat);
@@ -103,7 +102,8 @@ public class ReportMapsActivity extends AppCompatActivity implements
                     crime.saveInBackground();
 
                     Toast.makeText(getApplicationContext(), "Reported.", Toast.LENGTH_LONG).show();
-                    //Toast.makeText(getApplicationContext(), (String)mCrime.toString() + " Reported",Toast.LENGTH_LONG).show();
+                    Intent i = new Intent(ReportMapsActivity.this, ViewCrimesMapsActivity.class);
+                    startActivity(i);
                 }
                 else{
                     Toast.makeText(getApplicationContext(),
