@@ -1,10 +1,13 @@
 package com.example.daniel.reportcrime;
 
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -64,6 +67,10 @@ public class ReportMapsActivity extends AppCompatActivity implements
 
 
         setContentView(R.layout.activity_report_maps);
+        ActionBar actionBar = getActionBar();
+            if (actionBar != null) {
+                actionBar.setBackgroundDrawable(new ColorDrawable(Color.RED));
+        }
 
         mapFragment = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map));
         if (mapFragment != null) {

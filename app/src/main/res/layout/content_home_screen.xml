@@ -18,7 +18,7 @@
             android:text="@string/report_crime"
             android:id="@+id/report_button"
             android:layout_gravity="center_horizontal"
-            android:background="@android:color/holo_orange_light"
+            android:background="@color/colorButtons"
             android:layout_margin="10dp"/>
 
         <Button
@@ -27,7 +27,7 @@
             android:text="@string/view_crime"
             android:id="@+id/view_crime_button"
             android:layout_gravity="center_horizontal"
-            android:background="@android:color/holo_orange_light"
+            android:background="@color/colorButtons"
             android:layout_margin="10dp"/>
 </LinearLayout>
 
