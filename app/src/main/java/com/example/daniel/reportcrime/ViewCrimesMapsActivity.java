@@ -25,6 +25,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -247,6 +248,8 @@ public class ViewCrimesMapsActivity extends AppCompatActivity implements
         LatLng latLng = new LatLng(mLatitude, mLongitude);
         mCrimeMarker = map.addMarker(new MarkerOptions().position(latLng));
         mCrimeMarker.setTitle(infraction);
+        mCrimeMarker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.custom_marker));
+        mCrimeMarker.setAnchor(.1f, 1f);
 
     }
 

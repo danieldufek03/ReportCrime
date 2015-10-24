@@ -29,6 +29,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -101,6 +102,7 @@ public class ReportMapsActivity extends AppCompatActivity implements
                     String lat = Double.toString(mCrimeMarker.getPosition().latitude);
                     String longitude = Double.toString(mCrimeMarker.getPosition().longitude);
                     mCrimeMarker.setTitle(mInfraction);
+
                     //Uploads a parse object for the crime
                     ParseObject crime = new ParseObject("Crime");
                     crime.put("lat", lat);
@@ -257,6 +259,8 @@ public class ReportMapsActivity extends AppCompatActivity implements
             public void onMapClick(LatLng point) {
                 map.clear();
                 mCrimeMarker = map.addMarker(new MarkerOptions().position(point));
+                mCrimeMarker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.custom_marker));
+                mCrimeMarker.setAnchor(.1f, 1f);
             }
         });
     }
